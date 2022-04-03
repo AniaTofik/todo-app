@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormTaskComponent } from './form-task.component';
+import { AddTaskComponent } from './add-task.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({ imports: [CommonModule, ReactiveFormsModule],
-  	declarations: [FormTaskComponent],
+  	declarations: [AddTaskComponent],
   	providers: [],
-  	exports: [FormTaskComponent] })
-export class FormTaskComponentModule {
+  	exports: [AddTaskComponent] })
+export class AddTaskComponentModule {
 }
