@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "todo-app-cac7d": {
+      "hosting": {
+        "todo-app": [
+          "todo-app-cac7d"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "todo-app-cac7d"
+  }
+}

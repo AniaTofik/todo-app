@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponentModule } from '@navigation';
 import { DateComponentModule } from '@date';
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -13,6 +15,7 @@ import { DateComponentModule } from '@date';
     AppRoutingModule,
     NavbarComponentModule,
     DateComponentModule,
+    AngularFireModule.initializeApp(environment.firestoreConfig),
   ],
   providers: [],
   bootstrap: [AppComponent],
