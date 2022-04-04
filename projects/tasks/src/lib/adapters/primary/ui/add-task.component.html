@@ -1,4 +1,8 @@
-<form [formGroup]="addTask"><input class="p-3" type="text" formControlName="text"
-    placeholder=" Write your message here"><br><input style="background-color:#7300e6" class="me-3 mt-3 text-light"
-    type="submit" value="Add task" disabled><input type="submit" value="Cancel">
+<form [formGroup]="addTask" (ngSubmit)='onSubmitAddtasked(addTask)'>
+  <input class="p-3" type="text" formControlName="text" placeholder=" Write your message here">
+  <br>
+  <input style="background-color:#7300e6" class="me-3 mt-3 text-light" type="submit" value="Add task">
+  <input type="submit" value="Cancel">
 </form>
+
+<!-- disabled -->

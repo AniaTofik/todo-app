@@ -21,9 +21,14 @@ export class AddTaskComponent {
 
   constructor(@Inject(ADDS_TASK_DTO) private _addsTaskDto: AddsTaskDtoPort) {}
 
-  // onSubmitAddstasked(addTask: FormGroup): void {
-  //   this._addsTaskDto.add(
-  //     text: addTask.get('text').value
-  //   );
-  // }
+
+  onSubmitAddtasked(addTask: FormGroup): void {
+    console.log(addTask.getRawValue());
+    if (addTask.invalid) {
+      return;
+    }
+    this._addsTaskDto.add(addTask.getRawValue());
+    `text:${addTask.value.text}`
+    addTask.reset();
+  }
 }
