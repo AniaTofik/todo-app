@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePageModule } from './pages/home.page-module';
 import { TasksPageModule } from './pages/tasks.page-module';
+import { MyListPageModule } from './pages/my-list.page-module';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'tasks',
     loadChildren: () => TasksPageModule,
+  },
+  {
+    path: 'my-list',
+    loadChildren: () => MyListPageModule,
   },
 ];
 
