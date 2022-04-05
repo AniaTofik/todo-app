@@ -9,6 +9,9 @@ import {
   ADDS_TASK_DTO,
   AddsTaskDtoPort,
 } from '../../../application/ports/secondary/adds-task.dto-port';
+import { Observable } from 'rxjs';
+import { TaskDTO } from '../../../application/ports/secondary/task.dto';
+
 
 @Component({
   selector: 'lib-add-task',
