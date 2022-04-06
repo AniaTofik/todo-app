@@ -10,6 +10,7 @@ import {
   GETS_ALL_TASK_DTO,
   GetsAllTaskDtoPort,
 } from '../../../application/ports/secondary/gets-all-task.dto-port';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'lib-task-list',
@@ -21,6 +22,7 @@ export class TaskListComponent {
   tasks$: Observable<TaskDTO[]> = this._getsAllTaskDto.getAll();
 
   constructor(
-    @Inject(GETS_ALL_TASK_DTO) private _getsAllTaskDto: GetsAllTaskDtoPort
+    @Inject(GETS_ALL_TASK_DTO) 
+    private _getsAllTaskDto: GetsAllTaskDtoPort,
   ) {}
 }
