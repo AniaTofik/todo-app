@@ -11,7 +11,7 @@ import {
 } from '../../../application/ports/secondary/adds-task.dto-port';
 import { Observable } from 'rxjs';
 import { TaskDTO } from '../../../application/ports/secondary/task.dto';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'lib-add-task',
@@ -22,17 +22,20 @@ import { TaskDTO } from '../../../application/ports/secondary/task.dto';
 export class AddTaskComponent {
   readonly addTask: FormGroup = new FormGroup({ text: new FormControl() });
 
-  constructor(@Inject(ADDS_TASK_DTO) private _addsTaskDto: AddsTaskDtoPort) {}
+  constructor(
+    @Inject(ADDS_TASK_DTO)
+    private _addsTaskDto: AddsTaskDtoPort,
+    private _router: Router
+  ) {}
 
   onSubmitAddtasked(addTask: FormGroup): void {
-    console.log(addTask.getRawValue());
+    this._router.navigate(['/my-list']);
     if (addTask.invalid) {
       return;
     }
-
-    this._addsTaskDto.add(addTask.getRawValue());
-
-    `text:${addTask.value.text}`;
-    addTask.reset();
+    this._addsTaskDto.add({
+      text: addTask.get('text')?.value,
+    });
+    this.addTask.reset();
   }
 }

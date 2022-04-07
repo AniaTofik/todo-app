@@ -11,6 +11,7 @@ import {
   GetsAllTaskDtoPort,
 } from '../../../application/ports/secondary/gets-all-task.dto-port';
 import { ActivatedRoute } from '@angular/router';
+import { ADDS_TASK_DTO, AddsTaskDtoPort } from '../../../application/ports/secondary/adds-task.dto-port';
 
 @Component({
   selector: 'lib-task-list',
@@ -23,6 +24,6 @@ export class TaskListComponent {
 
   constructor(
     @Inject(GETS_ALL_TASK_DTO) 
-    private _getsAllTaskDto: GetsAllTaskDtoPort,
+    private _getsAllTaskDto: GetsAllTaskDtoPort, @Inject(ADDS_TASK_DTO) private _addsTaskDto: AddsTaskDtoPort
   ) {}
 }

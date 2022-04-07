@@ -1,7 +1,8 @@
 <form [formGroup]="addTask" (ngSubmit)='onSubmitAddtasked(addTask)' class="w-100">
   <input required class="px-5 py-4" type="text" formControlName="text" placeholder=" Write your message here">
   <br>
-  <button [disabled]="addTask.invalid" class="btn me-4 mt-4 btn-primary" type="submit" routerLink="/my-list">Add
+  <button [disabled]="addTask.invalid" class="btn me-4 mt-4 btn-primary" type="submit" router>Add
     task</button>
   <button class="btn mt-4 border-dark border-1" type="submit">Cancel</button>
 </form>
+
