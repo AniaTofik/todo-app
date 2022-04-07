@@ -1,3 +1,6 @@
-<ul>
-  <li *ngFor="let item of tasks$ | async">{{ item.text }}</li>
-</ul>
+<div class="form-check form-check-inline d-flex flex-column mb-4">
+  <label *ngFor="let item of tasks$ | async" class="form-check-label py-1" for="inlineCheckbox1">
+    <input class="form-check-input pointer rounded-circle" type="checkbox" id="inlineCheckbox1"
+      value="option1">{{ item.text }}
+  </label>
+</div>
