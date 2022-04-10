@@ -11,7 +11,10 @@ import {
   GetsAllTaskDtoPort,
 } from '../../../application/ports/secondary/gets-all-task.dto-port';
 import { ActivatedRoute } from '@angular/router';
-import { ADDS_TASK_DTO, AddsTaskDtoPort } from '../../../application/ports/secondary/adds-task.dto-port';
+import {
+  ADDS_TASK_DTO,
+  AddsTaskDtoPort,
+} from '../../../application/ports/secondary/adds-task.dto-port';
 
 @Component({
   selector: 'lib-task-list',
@@ -20,10 +23,11 @@ import { ADDS_TASK_DTO, AddsTaskDtoPort } from '../../../application/ports/secon
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskListComponent {
-  tasks$: Observable<TaskDTO[]> = this._getsAllTaskDto.getAll();
+  tasksList$: Observable<TaskDTO[]> = this._getsAllTaskDto.getAll();
 
   constructor(
-    @Inject(GETS_ALL_TASK_DTO) 
-    private _getsAllTaskDto: GetsAllTaskDtoPort, @Inject(ADDS_TASK_DTO) private _addsTaskDto: AddsTaskDtoPort
+    @Inject(GETS_ALL_TASK_DTO)
+    private _getsAllTaskDto: GetsAllTaskDtoPort,
+    @Inject(ADDS_TASK_DTO) private _addsTaskDto: AddsTaskDtoPort
   ) {}
 }
