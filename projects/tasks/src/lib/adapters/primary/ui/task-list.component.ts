@@ -29,7 +29,6 @@ import { FormGroup, FormControl } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskListComponent {
-  status = 0;
   tasksList$: Observable<TaskDTO[]> = this._getsAllTaskDto.getAll();
   readonly setTask: FormGroup = new FormGroup({ text: new FormControl() });
 
@@ -40,7 +39,13 @@ export class TaskListComponent {
     @Inject(SETS_TASK_DTO) private _setsTaskDto: SetsTaskDtoPort
   ) {}
 
-  onItemClicked() {
-    this.status = 1;
+  onClickStrikethroughtasked(setTask: FormGroup): void {
+    console.log('hello');
+
+    this._setsTaskDto.set({
+      // text: setTask.get('text')?.set('bbbbb'),
+      // $this.addClass("strikethrough"),
+      // text: setTask.get('text').classList.add('strikethrough'),
+    });
   }
 }

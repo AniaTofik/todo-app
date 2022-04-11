@@ -1,17 +1,37 @@
 <div class="form-check form-check-inline position-relative d-flex flex-column mb-4 ms-5 ms-md-0">
-  <label *ngFor="let item of tasksList$ | async;" class="position-relative form-check-label py-2 w-75"
-    for="inlineCheckbox1">
-    <input ng-model="deleted" (click)="onItemClicked()" class="form-check-input pointer rounded-circle" type="checkbox"
-      id="inlineCheckbox1" value="option1">
-    <span [ngClass]="{'strikethrough' : status == 1 }">{{ item.text }}
-    </span>
+  <label *ngFor="let task of tasksList$ | async;" class="position-relative form-check-label py-2 w-75">
+    <input (click)="onClickStrikethroughtasked(setTask)" ng-model="deleted"
+      class="form-check-input pointer rounded-circle" type="checkbox" id="inlineCheckbox1" value="option1">
+    <span [class]="">{{ task.text }}</span>
+    <div *ngIf="task" class="strikethrough"></div>
     <button class="position-absolute bottom-0 mt-5 end-0 btn line-height-0 mb-2" type="button" id="dropdownMenuButton"
       data-bs-toggle="dropdown" aria-expanded="false">
       ...
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <li class="dropdown-item">Delete task</li>
+      <button class="dropdown-item" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Delete task
+      </button>
     </ul>
 
   </label>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-uppercase" id="exampleModalLabel">Delete task</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this task?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger">Delete task</button>
+      </div>
+    </div>
+  </div>
 </div>

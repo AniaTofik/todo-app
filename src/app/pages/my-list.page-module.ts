@@ -6,6 +6,7 @@ import { AddTaskComponentModule } from '../../../projects/tasks/src/lib/adapters
 import { FirebaseTasksServiceModule } from '../../../projects/tasks/src/lib/adapters/secondary/infrastructure/firebase-tasks.service-module';
 import { TaskListComponentModule } from '../../../projects/tasks/src/lib/adapters/primary/ui/task-list.component-module';
 
+
 @NgModule({
   imports: [
     CommonModule,
