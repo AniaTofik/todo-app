@@ -1,9 +1,10 @@
 <div class="form-check form-check-inline position-relative d-flex flex-column mb-4 ms-5 ms-md-0">
-  <label *ngFor="let item of tasksList$ | async" class="position-relative form-check-label py-2 w-75"
+  <label *ngFor="let item of tasksList$ | async;" class="position-relative form-check-label py-2 w-75"
     for="inlineCheckbox1">
-    <input ng-model="deleted" class="form-check-input pointer rounded-circle" type="checkbox" id="inlineCheckbox1"
-      value="option1"><span>{{ item.text }}</span>
-
+    <input ng-model="deleted" (click)="onItemClicked()" class="form-check-input pointer rounded-circle" type="checkbox"
+      id="inlineCheckbox1" value="option1">
+    <span [ngClass]="{'strikethrough' : status == 1 }">{{ item.text }}
+    </span>
     <button class="position-absolute bottom-0 mt-5 end-0 btn line-height-0 mb-2" type="button" id="dropdownMenuButton"
       data-bs-toggle="dropdown" aria-expanded="false">
       ...

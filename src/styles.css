@@ -2,3 +2,7 @@
 .pointer:hover {
     cursor: pointer;
 }
+
+.strikethrough {
+    text-decoration: line-through;
+}
