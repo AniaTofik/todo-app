@@ -3,3 +3,6 @@
   cursor: pointer;
 }
 
+.bg-green {
+  background-color: rgb(172, 204, 172);
+}
