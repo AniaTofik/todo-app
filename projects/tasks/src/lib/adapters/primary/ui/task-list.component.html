@@ -1,9 +1,12 @@
-<div class="form-check form-check-inline position-relative d-flex flex-column mb-4 ms-5 ms-md-0">
-  <label *ngFor="let task of tasksList$ | async;" class="position-relative form-check-label py-2 w-75">
-    <input (click)="onClickStrikethroughtasked(setTask)" ng-model="deleted"
-      class="form-check-input pointer rounded-circle" type="checkbox" id="inlineCheckbox1" value="option1">
-    <span [class]="">{{ task.text }}</span>
-    <div *ngIf="task" class="strikethrough"></div>
+<div [formGroup]="setTask" class="form-check form-check-inline position-relative d-flex flex-column mb-4 ms-5 ms-md-0">
+  <label *ngFor="let task of tasksList$ | async" class="position-relative form-check-label py-2 w-75">
+    <input (click)="onClickStrikethroughtasked(task)" [ngClass]="{'bg-success' : task.checked === true}"
+      [checked]="task.checked" ng-model="deleted" class="form-check-input pointer rounded-circle" type="checkbox"
+      id="inlineCheckbox1" value="option1" />
+
+    <div [ngClass]="{ 'text-decoration-line-through': task.checked === true }">
+      {{task.text }}
+    </div>
     <button class="position-absolute bottom-0 mt-5 end-0 btn line-height-0 mb-2" type="button" id="dropdownMenuButton"
       data-bs-toggle="dropdown" aria-expanded="false">
       ...
@@ -13,7 +16,6 @@
         Delete task
       </button>
     </ul>
-
   </label>
 </div>
 
@@ -22,14 +24,16 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-uppercase" id="exampleModalLabel">Delete task</h5>
+        <h5 class="modal-title text-uppercase" id="exampleModalLabel">
+          Delete task
+        </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        Are you sure you want to delete this task?
-      </div>
+      <div class="modal-body">Are you sure you want to delete this task?</div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
         <button type="button" class="btn btn-danger">Delete task</button>
       </div>
     </div>

@@ -32,10 +32,10 @@ export class FirebaseTasksService
   }
 
   set(task: Partial<TaskDTO>): void {
-    this._client.doc('tasks-List/' + task.id).update(task);
+    this._client.doc('tasks-list/' + task.id).update(task);
   }
 
   remove(id: string): void {
-    this._client.doc('tasks/' + id).delete();
+    this._client.doc('tasks-list/' + id).delete();
   }
 }

@@ -14,7 +14,7 @@ import { REMOVES_TASK_DTO } from '../../../application/ports/secondary/removes-t
     { provide: ADDS_TASK_DTO, useExisting: FirebaseTasksService },
     { provide: GETS_ALL_TASK_DTO, useExisting: FirebaseTasksService },
     { provide: SETS_TASK_DTO, useExisting: FirebaseTasksService },
-    { provide: REMOVES_TASK_DTO, useExisting: FirebaseTasksService }
+    { provide: REMOVES_TASK_DTO, useExisting: FirebaseTasksService },
   ],
   exports: [],
 })

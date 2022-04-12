@@ -21,6 +21,10 @@ import {
   SetsTaskDtoPort,
 } from '../../../application/ports/secondary/sets-task.dto-port';
 import { FormGroup, FormControl } from '@angular/forms';
+import {
+  REMOVES_TASK_DTO,
+  RemovesTaskDtoPort,
+} from '../../../application/ports/secondary/removes-task.dto-port';
 
 @Component({
   selector: 'lib-task-list',
@@ -36,16 +40,21 @@ export class TaskListComponent {
     @Inject(GETS_ALL_TASK_DTO)
     private _getsAllTaskDto: GetsAllTaskDtoPort,
     @Inject(ADDS_TASK_DTO) private _addsTaskDto: AddsTaskDtoPort,
-    @Inject(SETS_TASK_DTO) private _setsTaskDto: SetsTaskDtoPort
+    @Inject(SETS_TASK_DTO) private _setsTaskDto: SetsTaskDtoPort,
+    @Inject(REMOVES_TASK_DTO) private _removesTaskDto: RemovesTaskDtoPort
   ) {}
 
-  onClickStrikethroughtasked(setTask: FormGroup): void {
-    console.log('hello');
-
-    this._setsTaskDto.set({
-      // text: setTask.get('text')?.set('bbbbb'),
-      // $this.addClass("strikethrough"),
-      // text: setTask.get('text').classList.add('strikethrough'),
-    });
+  onClickStrikethroughtasked(setTask: any): void {
+    if (setTask.checked === false) {
+      this._setsTaskDto.set({
+        id: setTask.id,
+        checked: true,
+      });
+    } else {
+      this._setsTaskDto.set({
+        id: setTask.id,
+        checked: false,
+      });
+    }
   }
 }
