@@ -62,7 +62,7 @@ export class TaskListComponent {
   }
 
   showCount() {
-    this.showMe = true;
+    this.showMe = false;
   }
   // counter(type: string) {
   // type === 'add' ? this.count++ : this.count--;
@@ -71,6 +71,7 @@ export class TaskListComponent {
   counter() {
     // this.count += this.isCounted ? +1 : +1;
     // this.count += !this.isCounted ? -1 : -1;
+
     if ((this.isCounted = false)) {
       this.count += !this.isCounted ? -1 : -1;
     } else {
@@ -78,10 +79,7 @@ export class TaskListComponent {
     }
   }
 
-  //   onClickDeletetasked(): void {
-  //     const task = collection('tasks-list');
-  //     this._removesTaskDto.remove({
-  //     task.doc('id').delete(),
-  //     });
-  //   }
+  onClickDeletetasked(taskId: string): void {
+    this._removesTaskDto.remove(taskId);
+  }
 }

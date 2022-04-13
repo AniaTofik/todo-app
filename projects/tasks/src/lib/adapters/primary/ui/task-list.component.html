@@ -25,7 +25,8 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div *ngFor="let task of tasksList$ | async" class="modal fade" id="exampleModal" tabindex="-1"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -39,12 +40,8 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Close
         </button>
-        <button type="button" class="btn btn-danger">Delete task</button>
+        <button (click)="onClickDeletetasked(task.id)" type="button" class="btn btn-danger">Delete task</button>
       </div>
     </div>
   </div>
 </div>
-
-<!-- <button (click)="counter('add')">++</button>
-<p>{{count}} Task complited!</p>
-<button (click)="counter('minus')">--</button> -->
