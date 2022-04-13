@@ -46,7 +46,6 @@ export class TaskListComponent {
   ) {}
   private isCounted: boolean = false;
   showMe: boolean = false;
-  showToogler: boolean = true;
 
   onClickStrikethroughtasked(setTask: any): void {
     if (setTask.checked === false) {
@@ -65,14 +64,6 @@ export class TaskListComponent {
   showCount() {
     this.showMe = true;
   }
-
-  // showToggler() {
-  //   if ((this.showMe = false)) {
-  //     this.count += !this.isCounted ? -1 : -1;
-  //   } else {
-  //     this.count += !this.isCounted ? +1 : +1;
-  //   }
-  // }
   // counter(type: string) {
   // type === 'add' ? this.count++ : this.count--;
   // type === 'minus' ? this.count-- : this.count++;
@@ -86,4 +77,11 @@ export class TaskListComponent {
       this.count += !this.isCounted ? +1 : +1;
     }
   }
+
+  //   onClickDeletetasked(): void {
+  //     const task = collection('tasks-list');
+  //     this._removesTaskDto.remove({
+  //     task.doc('id').delete(),
+  //     });
+  //   }
 }
