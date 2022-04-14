@@ -25,6 +25,7 @@ import {
   REMOVES_TASK_DTO,
   RemovesTaskDtoPort,
 } from '../../../application/ports/secondary/removes-task.dto-port';
+import { map } from '@firebase/util';
 
 @Component({
   selector: 'lib-task-list',
@@ -35,6 +36,11 @@ import {
 export class TaskListComponent {
   count = 0;
   tasksList$: Observable<TaskDTO[]> = this._getsAllTaskDto.getAll();
+  // .pipe(
+  //   map((tasksList: TaskDTO[]) =>
+  //   tasksList.sort((a, b) => a.id  - b.id )
+  //   )
+  // );
   readonly setTask: FormGroup = new FormGroup({ text: new FormControl() });
 
   constructor(
