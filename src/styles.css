@@ -1,13 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-.pointer:hover {
-  cursor: pointer;
-}
 
 .style-css {
-  background-color: rgb(196, 221, 196);
-  color: rgb(7, 92, 7);
-  border: 1px solid rgb(7, 92, 7);
-  border-radius: 1%;
   font-size: 0.7rem;
   position: absolute;
   top: 6%;
@@ -19,6 +12,6 @@
   color: white;
 }
 
-.bg-white {
-  background-color: white;
+.hover-gray:hover {
+  background-color: #c7c3c9;
 }

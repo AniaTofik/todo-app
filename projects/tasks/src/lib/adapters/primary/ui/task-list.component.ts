@@ -67,8 +67,8 @@ export class TaskListComponent {
     }
   }
 
-  showCount() {
-    this.showMe = false;
+  showAlert() {
+    this.showMe = true;
   }
   // counter(type: string) {
   // type === 'add' ? this.count++ : this.count--;
