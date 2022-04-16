@@ -43,6 +43,10 @@ export class AddTaskComponent {
     this.addTask.reset();
   }
 
+  backToHomePage() {
+    this._router.navigate(['/']);
+  }
+
   orderUp() {
     this.order = this.order + 1;
     console.log(this.order);

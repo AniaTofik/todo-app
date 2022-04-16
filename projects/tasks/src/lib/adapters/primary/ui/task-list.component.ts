@@ -36,7 +36,7 @@ import { Router } from '@angular/router';
 })
 export class TaskListComponent {
   tasksList$: Observable<TaskDTO[]> = this._getsAllTaskDto.getAll();
-  // .pipe(map((task: AddTaskDTO[]) => task.sort((a, b) => b.order - a.order)));
+  // .pipe(map((text: AddTaskDTO[]) => text.sort((a, b) => b.order - a.order)));
 
   readonly setTask: FormGroup = new FormGroup({ text: new FormControl() });
 
