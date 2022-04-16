@@ -1,9 +1,9 @@
 <form [formGroup]="addTask" (ngSubmit)="onSubmitAddtasked(addTask)" class="px-5 px-sm-0">
-  <input required class="px-5 py-4 w-sm-50 border-1 border-dark" type="text" formControlName="text"
+  <input required class="py-4 p-2 w-sm-50 border-1 border-dark" type="text" formControlName="text"
     placeholder=" Write your message here" />
   <br />
-  <div class="text-center text-sm-start">
-    <button [disabled]="addTask.invalid" class="btn me-4 mt-4 btn-primary border-0" type="submit" router
+  <div>
+    <button [disabled]="addTask.invalid" class="btn me-3 mt-4 btn-primary border-0" type="submit" router
       style="background-color: #7300e6" (click)="orderUp()">
       Add task
     </button>

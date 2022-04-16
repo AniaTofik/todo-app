@@ -100,7 +100,7 @@ export class TaskListComponent {
 
   onClickDeletetasked(taskId: string): void {
     this._removesTaskDto.remove(taskId);
-    if (!this.tasksList$) {
+    if (this.tasksList$ == null) {
       // this.router.navigate(['/']);
       this.routerLink();
     }
