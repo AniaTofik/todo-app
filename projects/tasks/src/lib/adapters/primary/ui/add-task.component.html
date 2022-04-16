@@ -4,7 +4,7 @@
   <br />
   <div class="text-center text-sm-start">
     <button [disabled]="addTask.invalid" class="btn me-4 mt-4 btn-primary border-0" type="submit" router
-      style="background-color: #7300e6">
+      style="background-color: #7300e6" (click)="orderUp()">
       Add task
     </button>
     <button class="btn mt-4 border-dark border-1" type="submit">Cancel</button>

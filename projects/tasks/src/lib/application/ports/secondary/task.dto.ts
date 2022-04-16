@@ -3,4 +3,5 @@ export interface TaskDTO {
   readonly id: string;
   readonly checked: boolean;
   readonly isCounted: boolean;
+  readonly order: number;
 }

@@ -26,6 +26,7 @@ import {
   RemovesTaskDtoPort,
 } from '../../../application/ports/secondary/removes-task.dto-port';
 import { map } from '@firebase/util';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'lib-task-list',
@@ -34,14 +35,9 @@ import { map } from '@firebase/util';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskListComponent {
-  count = 0;
-  countAlert = 0;
   tasksList$: Observable<TaskDTO[]> = this._getsAllTaskDto.getAll();
-  // .pipe(
-  //   map((tasksList: TaskDTO[]) =>
-  //   tasksList.sort((a, b) => a.order  - b.order)
-  //   )
-  // );
+  // .pipe(map((task: AddTaskDTO[]) => task.sort((a, b) => b.order - a.order)));
+
   readonly setTask: FormGroup = new FormGroup({ text: new FormControl() });
 
   constructor(
@@ -49,9 +45,15 @@ export class TaskListComponent {
     private _getsAllTaskDto: GetsAllTaskDtoPort,
     @Inject(ADDS_TASK_DTO) private _addsTaskDto: AddsTaskDtoPort,
     @Inject(SETS_TASK_DTO) private _setsTaskDto: SetsTaskDtoPort,
-    @Inject(REMOVES_TASK_DTO) private _removesTaskDto: RemovesTaskDtoPort
+    @Inject(REMOVES_TASK_DTO) private _removesTaskDto: RemovesTaskDtoPort,
+    private router: Router
   ) {}
-  isCounted: boolean = false;
+
+  date = new Date();
+  count = 0;
+  countAlert = 0;
+  isCounted = false;
+  checked = true;
   showMe: boolean = false;
   showMeAlert: boolean = false;
 
@@ -60,18 +62,16 @@ export class TaskListComponent {
       this._setsTaskDto.set({
         id: setTask.id,
         checked: true,
-        isCounted: true,
       });
     } else {
       this._setsTaskDto.set({
         id: setTask.id,
         checked: false,
-        isCounted: false,
       });
     }
   }
 
-  showAlert() {
+  showAlert(): void {
     this.showMe = true;
     this.showMeAlert = false;
   }
@@ -83,23 +83,33 @@ export class TaskListComponent {
   // type === 'add' ? this.count++ : this.count--;
   // type === 'minus' ? this.count-- : this.count++;
 
-  counter() {
-    if ((this.isCounted = false)) {
-      this.count += this.isCounted ? -1 : -1;
+  counter(setTask: any): void {
+    if (setTask.checked === true) {
+      this.count -= 1;
     } else {
-      this.count += !this.isCounted ? +1 : +1;
+      this.count += 1;
     }
   }
 
   counterAlert() {
-    if ((this.isCounted = false)) {
-      this.countAlert += this.isCounted ? -1 : -1;
-    } else {
-      this.countAlert += !this.isCounted ? +1 : +1;
-    }
+    this.countAlert += this.isCounted ? +1 : +1;
+  }
+  routerLink() {
+    this.router.navigate(['/']);
   }
 
   onClickDeletetasked(taskId: string): void {
     this._removesTaskDto.remove(taskId);
+    if (!this.tasksList$) {
+      // this.router.navigate(['/']);
+      this.routerLink();
+    }
+    console.log(this.tasksList$);
   }
 }
+
+// if (this.tasksList$ === null) {
+//   this.router.navigate(['/']);
+// } else {
+//   this._removesTaskDto.remove(taskId);
+// }
