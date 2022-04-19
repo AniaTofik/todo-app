@@ -6,6 +6,7 @@ import { GETS_ALL_TASK_DTO } from '../../../application/ports/secondary/gets-all
 import { SETS_TASK_DTO } from '../../../application/ports/secondary/sets-task.dto-port';
 import { REMOVES_TASK_DTO } from '../../../application/ports/secondary/removes-task.dto-port';
 
+
 @NgModule({
   imports: [AngularFirestoreModule],
   declarations: [],

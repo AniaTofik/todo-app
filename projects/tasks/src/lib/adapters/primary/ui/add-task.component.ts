@@ -21,8 +21,8 @@ import { Router } from '@angular/router';
 })
 export class AddTaskComponent {
   readonly addTask: FormGroup = new FormGroup({ text: new FormControl() });
-  order = new Date().getTime();
   checked = false;
+  // date = new Date().getTime();
 
   constructor(
     @Inject(ADDS_TASK_DTO)
@@ -37,18 +37,13 @@ export class AddTaskComponent {
     }
     this._addsTaskDto.add({
       text: addTask.get('text')?.value,
-      order: this.order,
       checked: this.checked,
+      date: new Date().getTime(),
     });
     this.addTask.reset();
   }
 
   backToHomePage() {
     this._router.navigate(['/']);
-  }
-
-  orderUp() {
-    this.order = this.order + 1;
-    console.log(this.order);
   }
 }

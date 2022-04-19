@@ -2,7 +2,7 @@
 <div *ngIf="showMe" class="counter alert alert-success style-css border-2" role="alert">{{count}}
   Task complited!
 </div>
-<div *ngIf="showMeAlert" class="counter alert alert-success style-css border-2" role="alert">{{countAlert}}
+<div *ngIf="showMeAlert" class="counter alert alert-danger style-css border-2" role="alert">{{countAlert}}
   Task deleted!
 </div>
 
@@ -49,14 +49,13 @@
           Close
         </button>
         <button (click)="onClickDeletetasked(task.id)" (click)="counterAlert()" (click)="showAlertDelete()"
-          type="button" class="btn btn-danger" data-bs-dismiss="modal" router>Delete task</button>
+          type="button" class="btn btn-danger" data-bs-dismiss="modal" router>Delete
+          task</button>
       </div>
+      <div id="liveAlertPlaceholder"></div>
+      <button (click)="onClickDeletealltasksed(tasksList$)" id="liveAlertBtn" type="button" class="btn btn-danger"
+        data-bs-dismiss="modal" router>Delete
+        all tasks</button>
     </div>
   </div>
 </div>
-
-<!-- <button (click)="routerLink()" class="btn btn-danger" type="button"></button>
-<div  *ngIf="(tasksList$ | async)?.length == 0">
-  <p>no results</p>
-</div> -->
-

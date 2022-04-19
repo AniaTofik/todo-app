@@ -3,7 +3,6 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   Inject,
-  OnInit,
 } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TaskDTO } from '../../../application/ports/secondary/task.dto';
@@ -11,11 +10,6 @@ import {
   GETS_ALL_TASK_DTO,
   GetsAllTaskDtoPort,
 } from '../../../application/ports/secondary/gets-all-task.dto-port';
-import { ActivatedRoute } from '@angular/router';
-import {
-  ADDS_TASK_DTO,
-  AddsTaskDtoPort,
-} from '../../../application/ports/secondary/adds-task.dto-port';
 import {
   SETS_TASK_DTO,
   SetsTaskDtoPort,
@@ -36,20 +30,20 @@ import { Router } from '@angular/router';
 })
 export class TaskListComponent {
   tasksList$: Observable<TaskDTO[]> = this._getsAllTaskDto.getAll();
-  // .pipe(map((text: AddTaskDTO[]) => text.sort((a, b) => b.order - a.order)));
+  // .pipe(
+  //   map((taskList: TaskDTO[]) => taskList.sort((a, b) => a.date - b.date))
+  // );
 
   readonly setTask: FormGroup = new FormGroup({ text: new FormControl() });
 
   constructor(
     @Inject(GETS_ALL_TASK_DTO)
     private _getsAllTaskDto: GetsAllTaskDtoPort,
-    @Inject(ADDS_TASK_DTO) private _addsTaskDto: AddsTaskDtoPort,
     @Inject(SETS_TASK_DTO) private _setsTaskDto: SetsTaskDtoPort,
     @Inject(REMOVES_TASK_DTO) private _removesTaskDto: RemovesTaskDtoPort,
     private router: Router
   ) {}
 
-  date = new Date();
   count = 0;
   countAlert = 0;
   isCounted = false;
@@ -79,9 +73,6 @@ export class TaskListComponent {
     this.showMeAlert = true;
     this.showMe = false;
   }
-  // counter(type: string) {
-  // type === 'add' ? this.count++ : this.count--;
-  // type === 'minus' ? this.count-- : this.count++;
 
   counter(setTask: any): void {
     if (setTask.checked === true) {
@@ -100,16 +91,9 @@ export class TaskListComponent {
 
   onClickDeletetasked(taskId: string): void {
     this._removesTaskDto.remove(taskId);
-    if (this.tasksList$ == null) {
-      // this.router.navigate(['/']);
-      this.routerLink();
-    }
-    console.log(this.tasksList$);
+  }
+
+  onClickDeletealltasksed(tasksList$: any): void {
+    this._removesTaskDto.remove(tasksList$);
   }
 }
-
-// if (this.tasksList$ === null) {
-//   this.router.navigate(['/']);
-// } else {
-//   this._removesTaskDto.remove(taskId);
-// }

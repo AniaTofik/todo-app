@@ -26,11 +26,10 @@ export class FirebaseTasksService
 
   getAll(criterion: Partial<TaskDTO>): Observable<TaskDTO[]> {
     return this._client
-      .collection<TaskDTO>('tasks-list')
+      .collection<TaskDTO>('tasks-list', (ref) => ref.orderBy('text', 'asc'))
       .valueChanges({ idField: 'id' })
       .pipe(map((data: TaskDTO[]) => filterByCriterion(data, criterion)));
   }
-
   set(task: Partial<TaskDTO>): void {
     this._client.doc('tasks-list/' + task.id).update(task);
   }
