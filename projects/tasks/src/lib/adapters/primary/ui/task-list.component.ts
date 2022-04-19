@@ -94,6 +94,7 @@ export class TaskListComponent {
   }
 
   onClickDeletealltasksed(tasksList$: any): void {
-    this._removesTaskDto.remove(tasksList$);
+    // this._removesTaskDto.remove(tasksList$);
+    tasksList$.doc('text.id').delete();
   }
 }

@@ -22,7 +22,6 @@ import { Router } from '@angular/router';
 export class AddTaskComponent {
   readonly addTask: FormGroup = new FormGroup({ text: new FormControl() });
   checked = false;
-  // date = new Date().getTime();
 
   constructor(
     @Inject(ADDS_TASK_DTO)
@@ -38,7 +37,6 @@ export class AddTaskComponent {
     this._addsTaskDto.add({
       text: addTask.get('text')?.value,
       checked: this.checked,
-      date: new Date().getTime(),
     });
     this.addTask.reset();
   }
