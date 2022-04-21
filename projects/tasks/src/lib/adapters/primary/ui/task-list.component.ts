@@ -4,7 +4,7 @@ import {
   ChangeDetectionStrategy,
   Inject,
 } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { TaskDTO } from '../../../application/ports/secondary/task.dto';
 import {
   GETS_ALL_TASK_DTO,
@@ -29,11 +29,9 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskListComponent {
-  tasksList$: Observable<TaskDTO[]> = this._getsAllTaskDto.getAll();
-  // .pipe(
-  //   map((taskList: TaskDTO[]) => taskList.sort((a, b) => a.date - b.date))
-  // );
-
+  tasksList$: Observable<TaskDTO[]> = this._getsAllTaskDto
+    .getAll()
+    .pipe(tap((tasksList: TaskDTO[]) => this.backToHomePage(tasksList)));
   readonly setTask: FormGroup = new FormGroup({ text: new FormControl() });
 
   constructor(
@@ -96,5 +94,11 @@ export class TaskListComponent {
   onClickDeletealltasksed(tasksList$: any): void {
     // this._removesTaskDto.remove(tasksList$);
     tasksList$.doc('text.id').delete();
+  }
+
+  backToHomePage(tasksList: TaskDTO[]): void {
+    if (tasksList.length < 1) {
+      this.router.navigate(['/']);
+    }
   }
 }

@@ -55,8 +55,8 @@
         <button (click)="onClickDeletetasked(task.id)" (click)="counterAlert()" (click)="showAlertDelete()"
           type="button" class="btn btn-warning" data-bs-dismiss="modal">Delete
           task</button>
-        <button (click)="onClickDeletealltasksed(tasksList$)" id="liveAlertBtn" type="button" class="btn btn-danger"
-          data-bs-dismiss="modal">Delete
+        <button (click)="onClickDeletealltasksed(tasksList$)" *ngIf="backToHomePage" id="liveAlertBtn"
+          type="button" class="btn btn-danger" data-bs-dismiss="modal">Delete
           all tasks</button>
       </div>
     </div>
