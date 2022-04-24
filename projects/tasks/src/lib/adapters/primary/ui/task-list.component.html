@@ -1,8 +1,8 @@
 <!-- Alert -->
-<div *ngIf="showMe" class="counter alert alert-success style-css border-2" role="alert">{{count}}
+<div *ngIf="completeAlert" class="counter alert alert-success style-css border-2" role="alert">{{count$ | async}}
   Task complited!
 </div>
-<div *ngIf="showMeAlert" class="counter alert alert-danger style-css border-2" role="alert">{{countAlert}}
+<div *ngIf="deleteAlert" class="counter alert alert-danger style-css border-2" role="alert">
   Task deleted!
 </div>
 
@@ -52,11 +52,11 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Close
         </button>
-        <button (click)="onClickDeletetasked(task.id)" (click)="counterAlert()" (click)="showAlertDelete()"
-          type="button" class="btn btn-warning" data-bs-dismiss="modal">Delete
+        <button (click)="onClickDeletetasked(task.id)" (click)="showDeleteAlert()" type="button" class="btn btn-warning"
+          data-bs-dismiss="modal">Delete
           task</button>
-        <button (click)="onClickDeletealltasksed(tasksList$)" *ngIf="backToHomePage" id="liveAlertBtn"
-          type="button" class="btn btn-danger" data-bs-dismiss="modal">Delete
+        <button (click)="onClickDeletealltasksed(tasksList$)" *ngIf="backToHomePage" id="liveAlertBtn" type="button"
+          class="btn btn-danger" data-bs-dismiss="modal">Delete
           all tasks</button>
       </div>
     </div>
@@ -67,7 +67,7 @@
 
 <!-- Button trigger modal -->
 
-<!-- Modal -->
+<!-- Modal Edit -->
 <div *ngFor="let task of tasksList$ | async" class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
   data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">

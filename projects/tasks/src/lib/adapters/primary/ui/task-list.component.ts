@@ -19,8 +19,8 @@ import {
   REMOVES_TASK_DTO,
   RemovesTaskDtoPort,
 } from '../../../application/ports/secondary/removes-task.dto-port';
-import { map } from '@firebase/util';
 import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'lib-task-list',
@@ -32,6 +32,11 @@ export class TaskListComponent {
   tasksList$: Observable<TaskDTO[]> = this._getsAllTaskDto
     .getAll()
     .pipe(tap((tasksList: TaskDTO[]) => this.backToHomePage(tasksList)));
+  count$: Observable<number> = this.tasksList$.pipe(
+    map((tasks: TaskDTO[]) => {
+      return tasks.filter((text) => text.checked).length;
+    })
+  );
   readonly setTask: FormGroup = new FormGroup({ text: new FormControl() });
 
   constructor(
@@ -43,11 +48,8 @@ export class TaskListComponent {
   ) {}
 
   count = 0;
-  countAlert = 0;
-  isCounted = false;
-  checked = true;
-  showMe: boolean = false;
-  showMeAlert: boolean = false;
+  completeAlert: boolean = false;
+  deleteAlert: boolean = false;
 
   onClickStrikethroughtasked(setTask: any): void {
     if (setTask.checked === false) {
@@ -64,12 +66,12 @@ export class TaskListComponent {
   }
 
   showAlert(): void {
-    this.showMe = true;
-    this.showMeAlert = false;
+    this.completeAlert = true;
+    this.deleteAlert = false;
   }
-  showAlertDelete() {
-    this.showMeAlert = true;
-    this.showMe = false;
+  showDeleteAlert(): void {
+    this.completeAlert = false;
+    this.deleteAlert = true;
   }
 
   counter(setTask: any): void {
@@ -78,13 +80,6 @@ export class TaskListComponent {
     } else {
       this.count += 1;
     }
-  }
-
-  counterAlert() {
-    this.countAlert += this.isCounted ? +1 : +1;
-  }
-  routerLink() {
-    this.router.navigate(['/']);
   }
 
   onClickDeletetasked(taskId: string): void {
