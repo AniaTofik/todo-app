@@ -90,14 +90,7 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy",
-          "options": {
-            "prerender": false,
-            "ssr": false,
-            "browserTarget": "todo-app:build:production",
-            "firebaseProject": "todo-app-cac7d",
-            "firebaseHostingSite": "todo-app-cac7d"
-          }
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     },
